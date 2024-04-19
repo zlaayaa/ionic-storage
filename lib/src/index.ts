@@ -15,6 +15,7 @@ export interface StorageConfig {
   description?: string;
   driverOrder?: Driver[];
   dbKey?: string;
+  location?: number;
 }
 
 // TODO: Figure out why we can't get type LocalForage to work here in d.ts that is generated
@@ -34,8 +35,8 @@ const defaultConfig = {
 };
 
 export class Storage {
+  public _db: Database | null = null;
   private _config: StorageConfig;
-  private _db: Database | null = null;
   private _secureStorageDriver: Driver | null = null;
 
   /**
